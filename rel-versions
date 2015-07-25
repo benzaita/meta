@@ -1,0 +1,8 @@
+#!/bin/bash
+
+. $(dirname $0)/rel-common
+
+for c in $components; do
+    echo $c $(get_version $c)
+done
+

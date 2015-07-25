@@ -1,0 +1,33 @@
+function printv {
+    if [[ $verbose -gt 0 ]]; then
+        echo >&2 $*
+    fi
+}
+
+function get_version {
+    local c=$1
+    
+    # try `version.txt` file
+    printv "reading $c/version.txt"
+    v=$(cat $c/version.txt 2>/dev/null)
+
+    # try `getversion` executable
+    if [[ -z $v ]]; then
+        if [[ -e $c/getversion ]]; then
+            printv "running $c/getversion"
+            v=$(cd $c && ./getversion)
+        else
+            printv "$c/getversion not found or not executable. skipping"
+        fi
+    fi
+
+    # give up
+    if [[ -z $v ]]; then
+        printv "could not find version number for $c"
+        v="NA"
+    fi
+
+    echo $v
+}
+
+
