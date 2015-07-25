@@ -40,48 +40,13 @@ case $cmd in
         action="$selfdir/rel-versions"
     ;;
     env)
-        action="print_env"
+        action="$selfdir/rel-env"
     ;;
     *)
         print_usage
         exit 1
     ;;
 esac
-
-## define actions
-
-function get_version {
-    local c=$1
-    
-    # try `version.txt` file
-    printv "reading $c/version.txt"
-    v=$(cat $c/version.txt 2>/dev/null)
-
-    # try `getversion` executable
-    if [[ -z $v ]]; then
-        if [[ -e $c/getversion ]]; then
-            printv "running $c/getversion"
-            v=$(cd $c && ./getversion)
-        else
-            printv "$c/getversion not found or not executable. skipping"
-        fi
-    fi
-
-    # give up
-    if [[ -z $v ]]; then
-        printv "could not find version number for $c"
-        v="NA"
-    fi
-
-    echo $v
-}
-
-function print_env {
-    for c in $components; do
-        name=$(echo $c | tr -c '[:alnum:]' '_')ver
-        echo export ${name}=$(get_version $c)
-    done
-}
 
 ## execute action
 
