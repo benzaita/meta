@@ -1,0 +1,10 @@
+#!/bin/bash
+
+. $selfdir/meta-common
+
+# export env variables
+$($selfdir/meta-env)
+
+# run envsubst
+envsubst
+

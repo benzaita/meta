@@ -1,0 +1,9 @@
+#!/bin/bash
+
+. $(dirname $0)/meta-common
+
+for c in $components; do
+    name=$(echo $c | tr -c '[:alnum:]' '_')ver
+    echo export ${name}=$(get_version $c)
+done
+

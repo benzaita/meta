@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. $(dirname $0)/rel-common
+. $(dirname $0)/meta-common
 
 for c in $components; do
     echo $c $(get_version $c)
