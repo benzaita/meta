@@ -6,7 +6,7 @@ function printv {
 
 function get_version {
     local c=$1
-    
+
     # try `version.txt` file
     printv "reading $c/version.txt"
     v=$(cat $c/version.txt 2>/dev/null)
@@ -30,4 +30,10 @@ function get_version {
     echo $v
 }
 
+function get_revision {
+    local c=$1
+
+	rev=$(cd $c && git rev-parse --short HEAD)
+	echo $rev
+}
 

@@ -3,7 +3,9 @@
 . $(dirname $0)/meta-common
 
 for c in $components; do
-    name=$(echo $c | tr -c '[:alnum:]' '_')ver
-    echo export ${name}=$(get_version $c)
+    name=$(echo $c | tr -c '[:alnum:]' '_')
+
+    echo export ${name}ver=$(get_version $c)
+	echo export ${name}rev=$(get_revision $c)
 done
 

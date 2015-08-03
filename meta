@@ -14,6 +14,7 @@ where OPTIONS is a combination of:
 and COMMAND is one of:
     help        print this help
     versions    print version of each component
+    revisions   print VCS revision of each component
     env         generate environment
     envsubst    substitude variables using '$0 env'
 "
@@ -40,7 +41,10 @@ case $cmd in
     versions)
         action="$selfdir/meta-versions"
     ;;
-    env)
+	revisions)
+		action="$selfdir/meta-revisions"
+	;;
+	env)
         action="$selfdir/meta-env"
     ;;
     envsubst)
