@@ -6,7 +6,7 @@ selfdir=$(readlink -f $(dirname $0))
 
 function print_usage {
     echo "
-Usage: $0 [OPTIONS] COMMAND
+Usage: $0 [OPTIONS] COMMAND [COMPONENTS]
 
 where OPTIONS is a combination of:
     v           add verbosity
@@ -58,11 +58,13 @@ esac
 
 ## execute action
 
-components=$(find . -maxdepth 1 -type d -not -name '.*' -printf '%f\n')
+components=$*
+if [[ "$components" == "" ]]; then
+	components=$(find . -maxdepth 1 -type d -not -name '.*' -printf '%f\n')
+	fi
 printv "components: $components"
 
-export components
 export verbose
 export selfdir
-$action $*
+$action $components
 

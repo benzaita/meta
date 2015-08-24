@@ -2,6 +2,8 @@
 
 . $(dirname $0)/meta-common
 
+components=$*
+
 for c in $components; do
     echo $c $(get_revision $c)
 done

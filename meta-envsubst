@@ -2,8 +2,10 @@
 
 . $selfdir/meta-common
 
+components=$*
+
 # export env variables
-$($selfdir/meta-env)
+$($selfdir/meta-env $components)
 
 # run envsubst
 envsubst
